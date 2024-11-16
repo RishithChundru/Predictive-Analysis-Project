@@ -56,7 +56,7 @@ ggplot(df, aes(x = Predicted, y = Actual, fill = Count)) +
 
 
 
-                    #### Decision Tree ####
+                     #### Decision Tree ####
 
 
 
@@ -127,7 +127,6 @@ classifier <- svm(
   type = 'C-classification',
   kernel = 'linear'
 )
-
 # Predicting the testing set results
 y_pred <- predict(classifier, newdata = testing_set[-5])
 
@@ -184,9 +183,9 @@ plot(neural_model)
 
 # Predicting results using the neural network model
 prediction_nn <- predict(neural_model, concrete_test)
-
+prediction_nn_class <- ifelse(prediction_nn[, 1] > 0.5, "none", "completed") 
 # Confusion Matrix
-confusion_matrix_nn <- table(concrete_test$test_preparation_course, prediction_nn)
+confusion_matrix_nn <- table(concrete_test$test_preparation_course, prediction_nn_class)
 print(confusion_matrix_nn)
 
 # Calculatin Accuracy
